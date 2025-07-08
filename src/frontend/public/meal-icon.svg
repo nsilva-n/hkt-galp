@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lucide cooking-pot icon scaled to 64x64 -->
+  <path d="M5.33 32c0-14.73 11.94-26.67 26.67-26.67S58.67 17.27 58.67 32v18.67c0 2.94-2.39 5.33-5.33 5.33H10.67c-2.95 0-5.34-2.39-5.34-5.33V32z" stroke="#EA580C" stroke-width="2.67" fill="none"/>
+  <circle cx="32" cy="32" r="2.67" fill="#EA580C"/>
+  <path d="m21.33 5.33 2.67 5.34" stroke="#EA580C" stroke-width="2.67" stroke-linecap="round"/>
+  <path d="m42.67 5.33-2.67 5.34" stroke="#EA580C" stroke-width="2.67" stroke-linecap="round"/>
+  <path d="M5.33 32h-2.66" stroke="#EA580C" stroke-width="2.67" stroke-linecap="round"/>
+  <path d="M61.33 32h-2.66" stroke="#EA580C" stroke-width="2.67" stroke-linecap="round"/>
+</svg>

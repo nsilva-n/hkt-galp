@@ -1,0 +1,53 @@
+/* === Card Base === */
+.card {
+	background-color: #ffffff;
+	border-radius: 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	border: 1px solid #ff5a00;
+	transition: box-shadow 0.2s ease;
+}
+
+/* === Padding modifiers === */
+.card--padding-sm {
+	padding: 1rem;
+	/* 1/* components/ui/styles/Card.css */
+
+	/* === Base === */
+	.card {
+		background-color: #ffffff;
+		border-radius: 16px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		border: 1px solid #ff5a00;
+		transition: box-shadow 0.2s ease;
+	}
+
+	/* === Modifiers === */
+	.card--padding-sm {
+		padding: 1rem;
+		/* 16px */
+	}
+
+	.card--padding-md {
+		padding: 1.5rem;
+		/* 24px */
+	}
+
+	.card--padding-lg {
+		padding: 2rem;
+		/* 32px */
+	}
+}
+
+.card--padding-md {
+	padding: 1.5rem;
+	/* 24px */
+}
+
+.card--padding-lg {
+	padding: 2rem;
+	/* 32px */
+}
+
+.card--full-width {
+	width: 100%;
+}

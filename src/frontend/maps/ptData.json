@@ -1,0 +1,24 @@
+[
+  ["District", "KMs"],
+  ["Aveiro", 30000],
+  ["Beja", 10000],
+  ["Braga", 35000],
+  ["Bragança", 5000],
+  ["Castelo Branco", 5000],
+  ["Coimbra", 35000],
+  ["Évora", 10000],
+  ["Faro", 25000],
+  ["Guarda", 5000],
+  ["Leiria", 15000],
+  ["Lisboa", 50000],
+  ["Portalegre", 5000],
+  ["Porto", 40000],
+  ["Santarém", 20000],
+  ["Setúbal", 35000],
+  ["Viana do Castelo", 20000],
+  ["Vila Real", 15000],
+  ["Viseu", 25000],
+  ["Região Autónoma dos Açores", 10000],
+  ["Região Autónoma da Madeira", 10000]
+]
+

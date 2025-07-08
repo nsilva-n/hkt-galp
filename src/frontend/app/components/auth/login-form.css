@@ -1,0 +1,118 @@
+.login-form {
+	background: white;
+	padding: 4rem 2.5rem 3rem;
+	border-radius: 16px;
+	box-shadow: 0 15px 40px rgba(227, 29, 36, 0.3);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	position: relative;
+	text-align: center;
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+
+.login-form__title {
+	color: #e31d24;
+	margin-top: 2rem;
+	font-weight: 700;
+	font-size: 2rem;
+}
+
+.login-form__input {
+	padding: 1rem 1.25rem;
+	font-size: 1.1rem;
+	border-radius: 8px;
+	border: 2px solid #ddd;
+	outline: none;
+	transition: border-color 0.25s ease, box-shadow 0.25s ease;
+	width: 100%;
+	color: #555;
+}
+
+.login-form__input:focus {
+	border-color: #e31d24;
+	box-shadow: 0 0 12px rgba(227, 29, 36, 0.6);
+}
+
+.login-form__options {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 0.85rem;
+	margin-top: -0.5rem;
+}
+
+.login-form__forgot {
+	background: none;
+	border: none;
+	color: #e31d24;
+	cursor: pointer;
+	font-weight: 400;
+	font-size: 0.85rem;
+	padding: 0;
+}
+
+.login-form__forgot:hover,
+.login-form__forgot:focus {
+	text-decoration: underline;
+	color: #b9181c;
+}
+
+.login-form__back-button {
+	position: absolute;
+	top: 1rem;
+	left: 0.2rem;
+	display: flex;
+	align-items: center;
+	z-index: 10;
+}
+
+.login-form__back-button:hover {
+	color: #b9181c;
+}
+
+/* Container holding the OAuth buttons */
+.login-form__oauth-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	margin-top: 1rem;
+	width: 100%;
+}
+
+/* Logo icon */
+.login-form__oauth-logo {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+	display: block;
+}
+
+/* Text label */
+.login-form__oauth-label {
+	flex-grow: 1;
+	text-align: left;
+	font-size: 1rem;
+	padding: 0 1em 0 1em;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+	.login-form__oauth-button {
+		display: flex;
+		flex-direction: row;
+		font-size: 0.95rem;
+		padding: 0.5rem 0.75rem;
+	}
+
+	.login-form__oauth-logo {
+		width: 20px;
+		height: 20px;
+	}
+
+	.login-form__oauth-label {
+		font-size: 0.95rem;
+	}
+}

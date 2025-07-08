@@ -1,0 +1,52 @@
+/* Custom styles for index page buttons */
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease-out;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #111827;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 100%;
+  word-break: break-word;
+  text-align: center;
+  white-space: normal;
+  flex-wrap: wrap;
+  text-wrap: balance;
+  font-size: 1.125rem; /* 18px - Mobile */
+}
+
+.hero-button:hover {
+  background-color: #f9fafb;
+  transform: scale(1.05);
+}
+
+.hero-button:active {
+  background-color: #f3f4f6;
+  transform: scale(0.96);
+}
+
+.hero-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(190, 46, 0, 0.6), 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 640px) {
+  .hero-button {
+    font-size: 1.25rem; /* 20px - Tablet */
+    padding: 1rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-button {
+    font-size: 1.375rem; /* 22px - Desktop */
+    padding: 1.125rem 2.25rem;
+  }
+}

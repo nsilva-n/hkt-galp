@@ -1,0 +1,23 @@
+[
+  {
+    "nome": "João Silva",
+    "distrito": "Lisboa",
+    "concelho": "Lisboa",
+    "refeicoes": 120,
+    "kmsPercorridos": 120
+  },
+  {
+    "nome": "Maria Costa",
+    "distrito": "Porto",
+    "concelho": "Porto",
+    "refeicoes": 95,
+    "kmsPercorridos": 95
+  },
+  {
+    "nome": "Manuel Cavalo",
+    "distrito": "Guarda",
+    "concelho": "Guarda",
+    "refeicoes": 400,
+    "kmsPercorridos": 400
+  }
+]

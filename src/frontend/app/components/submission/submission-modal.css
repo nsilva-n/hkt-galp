@@ -1,0 +1,104 @@
+.submission-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.submission-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.submission-modal__content {
+  position: relative;
+  z-index: 1001;
+  width: 95%;
+  max-width: 800px;
+  animation: fadeInUp 0.3s ease-out;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .submission-modal {
+    padding: 0.5rem;
+    align-items: flex-start;
+    padding-top: 1rem;
+    justify-content: center;
+  }
+  
+  .submission-modal__content {
+    width: 100%;
+    max-width: none;
+    height: 95vh;
+    margin: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+  
+  .submission-flow-card > div:last-child {
+    padding: 0.5rem !important;
+  }
+  
+  .submission-flow-card .border.rounded-2xl.p-6 {
+    padding: 0.75rem !important;
+  }
+  
+  .button {
+    padding: 0.375rem 0.75rem !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .submission-modal__content {
+    width: 90%;
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .submission-modal__content {
+    max-width: 1000px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Custom scrollbar for the submission flow card */
+.submission-flow-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.submission-flow-card::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.submission-flow-card::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.submission-flow-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,262 @@
+.profile__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* === Layout Wrapper for Step === */
+.profile__step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  font-size: 1rem;
+}
+
+/* === Title === */
+.profile__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #be2e00;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* === Grid of Countries === */
+.profile__country-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === Country Button Content === */
+.profile__country-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+/* Flag emoji */
+.profile__country-flag {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Country name */
+.profile__country-name {
+  font-weight: 500;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Responsive scaling for tablets */
+@media (min-width: 640px) {
+  .profile__country-flag {
+    font-size: 2rem;
+  }
+
+  .profile__country-name {
+    font-size: 1.125rem;
+  }
+}
+
+/* Responsive scaling for laptops/desktops */
+@media (min-width: 1024px) {
+  .profile__country-flag {
+    font-size: 2.25rem;
+  }
+
+  .profile__country-name {
+    font-size: 1.25rem;
+  }
+}
+
+/* Optional: Button wrapper for countries */
+.profile__country-button {
+  width: 100%;
+}
+
+/* Card layout (scroll on small screens) */
+.profile__container .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* On larger screens, constrain card height + width */
+@media (min-width: 768px) {
+  .profile__container .card {
+    max-height: 80%;
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile__container .card {
+    min-height: 50%;
+    max-height: 80%;
+    max-width: 700px;
+  }
+}
+
+/* Optional layout helpers */
+.profile__button-container--end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile__button-container--middle {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.profile__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile__footer--single {
+  justify-content: center;
+}
+
+.profile__footer button,
+.profile__footer .button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  min-width: 120px;
+  transition: all 0.2s ease;
+}
+
+/* Medium screens (tablet) */
+@media (min-width: 640px) {
+
+  .profile__footer button,
+  .profile__footer .button {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    min-width: 140px;
+  }
+}
+
+/* Large screens (laptop and up) */
+@media (min-width: 1024px) {
+
+  .profile__footer button,
+  .profile__footer .button {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.25rem;
+    min-width: 160px;
+  }
+}
+
+
+.profile__form-group {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.profile__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.profile__select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.profile__select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.profile__participation-type-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Responsive two-button layout */
+.profile__participation-type-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Make buttons fill available space */
+.profile__participation-type-button {
+  flex: 1 1 100%;
+  /* Default: full width */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Highlighted state */
+.profile__participation-type-button.active {
+  background-color: #ffd6bc;
+  border-color: #be2e00;
+}
+
+/* Responsive: Side-by-side on medium+ screens */
+@media (min-width: 640px) {
+  .profile__participation-type-button {
+    flex: 1 1 calc(50% - 0.5rem);
+    /* Two buttons with gap */
+  }
+}
+
+.profile__participation-type-button span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Debug media query (for dev purposes only) */
+@media (min-width: 900px) {
+  body::after {
+    content: "💻 Large screen styles active";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #be2e00;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    z-index: 9999;
+  }
+}
