@@ -11,6 +11,7 @@ A huge thank you to everyone who helped make this hackathon happen:
   - [@godonnell2](https://github.com/godonnell2)  
   - [@c-buzzini2](https://github.com/c-buzzini2)  
   - [@JoaoGoncal0](https://github.com/JoaoGoncal0)
+  - and me ;)
 
 ---
 
