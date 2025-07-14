@@ -36,13 +36,13 @@ export default function LoginForm({ onClose }) {
 				aria-label="Voltar para a página anterior"
 				onClick={onClose}
 			>
-				Voltar
+				{t('submission.goback')}
 			</Button>
 
-			<h1 className="login-form__title">Todos os passos contam 🏃</h1>
+			<h1 className="login-form__title">{t('campaignname')} 🏃</h1>
 
 			<label htmlFor="email" className="sr-only">
-				Email address
+				Email
 			</label>
 			<input
 				id="email"
@@ -55,12 +55,12 @@ export default function LoginForm({ onClose }) {
 			/>
 
 			<label htmlFor="password" className="sr-only">
-				Password
+				{t('login.pass')}
 			</label>
 			<input
 				id="password"
 				type="password"
-				placeholder="Palava-passe"
+				placeholder={t('login.pass')}
 				required
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
@@ -73,16 +73,16 @@ export default function LoginForm({ onClose }) {
 					className="login-form__forgot"
 					onClick={() => alert("Redirecting to password recovery...")}
 				>
-					Esqueci minha senha
+					{t('login.dumb')}
 				</button>
 			</div>
 			<div className="flex flex-col">
 
 				<Button type="submit" variant="primary">
-					Entrar
+					{t('login.start')}
 				</Button>
 
-				<span>ou</span>
+				<span>{t('login.or')}</span>
 
 				{/* OAuth buttons using your custom Button component */}
 				<Button
@@ -99,7 +99,7 @@ export default function LoginForm({ onClose }) {
 							className="login-form__oauth-logo"
 							priority
 						/>
-						<span className="login-form__oauth-label">Entrar com Google</span>
+						<span className="login-form__oauth-label">{t('login.google')}</span>
 					</div>
 				</Button>
 			</div>

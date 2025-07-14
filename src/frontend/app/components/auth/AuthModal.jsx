@@ -8,6 +8,9 @@ import Button from "../ui/Button";
 import "../ui/styles/Button.css";
 import "./auth-modal.css";
 import design from "../../config/design";
+import React from 'react';
+import { useTranslation } from "react-i18next";
+import '../../../../i18n';
 
 const lusophoneCountries = [
 	{ name: "Portugal", flag: "🇵🇹" },
@@ -21,7 +24,8 @@ const lusophoneCountries = [
 
 export default function AuthModal({ isOpen, onClose, onOpenSubmission }) {
 	const [view, setView] = useState("choice"); // 'choice' | 'login' | 'signup' | 'guest-profile'
-	
+  	const { t } = useTranslation();
+
 	// Guest profile state
 	const [guestStep, setGuestStep] = useState(1);
 	const [country, setCountry] = useState("");
@@ -147,24 +151,24 @@ export default function AuthModal({ isOpen, onClose, onOpenSubmission }) {
 					<div className="auth-modal__options">
 
 						<Button variant="primary" onClick={() => setView("login")}>
-							Entrar
+							{t('auth.login1')}
 						</Button>
 						<p className="auth-modal__description">
-							Se você já tem uma conta.
+							{t('auth.login2')}
 						</p>
 
 						<Button variant="secondary" onClick={() => setView("signup")}>
-							Criar conta
+							{t('auth.signup1')}
 						</Button>
 						<p className="auth-modal__description">
-							Acompanhe o seu progresso e suba no ranking.
+							{t('auth.signup2')}
 						</p>
 
 						<Button variant="secondary" onClick={handleGuest}>
-							Submeta agora
+							{t('auth.guest1')}
 						</Button>
 						<p className="auth-modal__description">
-							Submeter rapidamente, sem criar uma conta.
+							{t('auth.guest2')}
 						</p>
 
 					</div>

@@ -166,7 +166,7 @@ export default function Home() {
                       <CookingPot className="w-16 h-16 mx-auto text-orange-600" />
                     </div>
                     <h2 className="text-lg font-semibold text-gray-700 mb-2">
-                      {t('hero.donmeals')}
+                      {t('hero.donmeals1')}
                     </h2>
                     <div className="text-5xl font-bold text-orange-600 mb-4">
                       {totalMeals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}

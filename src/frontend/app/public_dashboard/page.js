@@ -11,6 +11,9 @@ import { Leaderboard } from "../dashboard/charts/leaderboard/Table"; // Assuming
 import Button from "../components/ui/Button";
 import SubmissionModal from "../components/submission/SubmissionModal";
 import AuthModal from "../components/auth/AuthModal";
+import React from 'react';
+import { useTranslation } from "react-i18next";
+import '../../../i18n';
 
 // Removed CustomTooltip since LineChart is removed
 // const CustomTooltip = ({ active, payload }) => {
@@ -27,6 +30,7 @@ import AuthModal from "../components/auth/AuthModal";
 
 export default function ModernDashboard() {
   const router = useRouter();
+  const { t } = useTranslation();
   // Removed userSubmissions state as LineChart is removed
   // const [userSubmissions, setUserSubmissions] = useState([]);
   const [nationalTotal, setNationalTotal] = useState(0);
@@ -94,9 +98,9 @@ export default function ModernDashboard() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Movimento hoje,
+            {t('pubdash.title1')}
             <br />
-            <span className="text-[#ff7900]">impacto amanhã</span>
+            <span className="text-[#ff7900]">{t('pubdash.title2')}</span>
           </motion.h1>
           <motion.p
             className="text-xl md:text-2xl mb-8 font-light"
@@ -104,7 +108,7 @@ export default function ModernDashboard() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Ajude-nos a alcançar nossa meta
+            {t('pubdash.altsubtitle')}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -117,7 +121,7 @@ export default function ModernDashboard() {
               className="text-xl px-8 py-4"
             >
               <HandHeart className="button__icon" />
-              <span>Submeter Quilómetros</span>
+              <span>{t('pubdash.submit')}</span>
             </Button>
           </motion.div>
         </div>
@@ -137,10 +141,10 @@ export default function ModernDashboard() {
         >
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-black mb-6">
-              Participação nacional
+              {t('pubdash.country1')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Visualize o impacto da iniciativa em todo o território nacional.
+              {t('pubdash.country2')}
             </p>
           </div>
           <div className="relative">
@@ -148,7 +152,7 @@ export default function ModernDashboard() {
               <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#ff7900] text-white p-2 md:p-4 rounded-xl shadow-strong z-20 flex flex-col items-center">
                 <p className="text-lg md:text-2xl font-bold">{nationalTotal}</p>
                 <p className="text-xs md:text-sm opacity-90">
-                  Total Participantes
+                  {t('pubdash.country3')}
                 </p>
               </div>
               <Portugal />
@@ -168,12 +172,12 @@ export default function ModernDashboard() {
       >
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-4 space-y-6 lg:order-2">
-            <h2 className="text-4xl font-bold text-black">Ranking nacional</h2>
+            <h2 className="text-4xl font-bold text-black">{t('pubdash.leader1')}</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Veja os líderes da iniciativa e inspire-se a subir no ranking.
+              {t('pubdash.leader2')}
             </p>
             <Button variant="primary" className="w-full lg:w-auto px-6 py-3">
-              Ver ranking completo
+              {t('pubdash.leader3')}
             </Button>
           </div>
           <div className="lg:col-span-8 lg:order-1">
@@ -202,11 +206,10 @@ export default function ModernDashboard() {
             {nationalTotal.toLocaleString()}
           </h2>
           <p className="text-3xl text-primary-foreground font-semibold mb-8">
-            Refeições doadas
+            {t('pubdash.meals1')}
           </p>
           <p className="text-primary-foreground/90 text-xl max-w-2xl mx-auto leading-relaxed">
-            Cada quilómetro ativo equivale a uma refeição doada. Juntos
-            criamos impacto.
+            {t('pubdash.meals2')}
           </p>
         </div>
       </motion.section>

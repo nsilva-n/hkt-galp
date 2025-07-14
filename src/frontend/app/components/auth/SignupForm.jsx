@@ -51,10 +51,10 @@ export default function SignupForm({ onClose }) {
 				aria-label="Voltar"
 				onClick={onClose}
 			>
-				Voltar
+				{t('submission.goback')}
 			</Button>
 
-			<h1 className="signup-form__title">Criar Conta ✨</h1>
+			<h1 className="signup-form__title">{t('createaccform.createaccount')} ✨</h1>
 
 			<input
 				type="email"
@@ -84,7 +84,7 @@ export default function SignupForm({ onClose }) {
 						checked={formData.acceptTerms}
 						onChange={handleChange}
 					/>
-					Aceito os{" "}
+					{t('createaccform.tc1')}{" "}
 					<a
 						href="#"
 						onClick={(e) => {
@@ -97,7 +97,7 @@ export default function SignupForm({ onClose }) {
 							);
 						}}
 					>
-						Termos e Condições
+						{t('createaccform.tc2')}
 					</a>
 				</label>
 			</div>
@@ -107,9 +107,9 @@ export default function SignupForm({ onClose }) {
 
 			<div className="signup-form__actions">
 				<Button type="submit" variant="primary">
-					Começar
+					{t('createaccform.start')}
 				</Button>
-				<span>ou</span>
+				<span>{t('createaccform.or')}</span>
 				<Button type="button" variant="secondary">
 					<div className="signup-form__oauth-content">
 						<Image
@@ -120,7 +120,7 @@ export default function SignupForm({ onClose }) {
 							className="signup-form__oauth-logo"
 							priority
 						/>
-						<span className="signup-form__oauth-label">Entrar com Google</span>
+						<span className="signup-form__oauth-label">{t('createaccform.google')}</span>
 					</div>
 				</Button>
 			</div>

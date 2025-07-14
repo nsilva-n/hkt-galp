@@ -7,7 +7,7 @@ export default function CreateAccountPage() {
   return (
     <LoginLayout>
       <div className="container">
-        <h1>Todos os passos contam 🏃</h1>
+        <h1>{t('campaignname')} 🏃</h1>
         <CreateAccountForm />
 
         <style jsx>{`

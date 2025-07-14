@@ -16,13 +16,13 @@ export default function Step5FinalPage({ mealsDonated = 5, onClose }) {
     if (navigator.share) {
       navigator
         .share({
-          title: "Eu acabei de doar refeições!",
-          text: `Eu acabei de doar ${mealsDonated} refeições ao ser ativo! Junte-se a mim!`,
+          title: t('final.sharetitle'),
+          text: t('final.sharetext'),
           url: window.location.href,
         })
         .catch(console.error);
     } else {
-      alert("O compartilhamento não é suportado no seu navegador.");
+      alert(t('final.shareerror'));
     }
   }
 
@@ -37,10 +37,10 @@ export default function Step5FinalPage({ mealsDonated = 5, onClose }) {
       aria-modal="true"
       style={{ userSelect: "none" }}
     >
-      <h1>Parabéns! 🎉</h1>
+      <h1>{t('final.congrats')} 🎉</h1>
 
      <p className="meals">
-        Você acaba de doar <strong style={{ color: "#e31d24" }}>{mealsDonated.toLocaleString()}</strong> refeições!
+        {t('final.curr1')} <strong style={{ color: "#e31d24" }}>{mealsDonated.toLocaleString()}</strong> {t('final.curr2')}
      </p>
 
 
@@ -48,11 +48,11 @@ export default function Step5FinalPage({ mealsDonated = 5, onClose }) {
         className="total-meals"
         style={{ color: "#222", fontSize: "1.1rem", marginTop: "0.25rem" }}
       >
-        No total, você já doou <strong style={{ color: "#e31d24", fontWeight: "700" }}>{totalMealsDonated.toLocaleString()}</strong> refeições.
+        {t('final.total1')} <strong style={{ color: "#e31d24", fontWeight: "700" }}>{totalMealsDonated.toLocaleString()}</strong> {t('final.total2')}
       </p>
 
       <p>
-        A Fundação Galp agradece o seu apoio e solidariedade.
+        {t('final.thanks')}
       </p>
 
       <div className="buttons">
@@ -62,7 +62,7 @@ export default function Step5FinalPage({ mealsDonated = 5, onClose }) {
           aria-label="Compartilhar atividade"
         >
           <Share2 className="button__icon" />
-          <span>Partilhar</span>
+          <span>{t('final.share')}</span>
         </Button>
 
         <Button 
@@ -71,7 +71,7 @@ export default function Step5FinalPage({ mealsDonated = 5, onClose }) {
           aria-label="Fechar modal"
         >
           <X className="button__icon" />
-          <span>Fechar</span>
+          <span>{t('final.close')}</span>
         </Button>
       </div>
 

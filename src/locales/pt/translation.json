@@ -73,6 +73,7 @@
 	"title1": "Movimento hoje,",
 	"title2": "impacto amanhã",
 	"subtitle": "Cada quilómetro caminhado alimenta uma família",
+	"altsubtitle": "Ajude-nos a alcançar nossa meta",
 	"submit": "Submeter Quilómetros",
 	"country1": "Participação nacional",
 	"country2": "Visualize o impacto da iniciativa em todo o território nacional.",
@@ -156,6 +157,8 @@
 	"curr2": "refeições!",
 	"total1": "No total, você já doou",
 	"total2": "refeições.",
-	"share": "Compartilhar Atividade"
+	"thanks": "A Fundação Galp agradece o seu apoio e solidariedade.",
+	"share": "Partilhar",
+	"close": "Fechar"
   }
 }

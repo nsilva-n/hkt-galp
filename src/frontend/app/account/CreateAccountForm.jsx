@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import React from 'react';
+import { useTranslation } from "react-i18next";
+import '../../i18n';
 
 export default function CreateAccountForm() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -31,18 +35,18 @@ export default function CreateAccountForm() {
     e.preventDefault();
 
     if (!formData.acceptTerms) {
-      setError("Você precisa aceitar os Termos e Condições.");
+      setError(t('createaccform.tc'));
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setError("Por favor, insira um email válido.");
+      setError(t('createaccform.emailerror'));
       return;
     }
 
     setError("");
-    setSuccessMessage(`Conta criada! Por favor, verifique o seu email: ${formData.email}`);
+    setSuccessMessage(t('createaccform.success'));
 
     setFormData({
       username: "",
@@ -61,7 +65,7 @@ export default function CreateAccountForm() {
     <form onSubmit={handleSubmit} className="form">
       <button
         type="button"
-        aria-label="Voltar para a página anterior"
+        aria-label={t('createaccform.goback')}
         onClick={() => router.push("/welcome")}
         className="back-button"
       >
@@ -101,7 +105,7 @@ export default function CreateAccountForm() {
         <input
           type={showPassword ? "text" : "password"}
           name="password"
-          placeholder="Senha"
+          placeholder={t('createaccform.pass')}
           value={formData.password}
           onChange={handleChange}
           required
@@ -155,7 +159,7 @@ export default function CreateAccountForm() {
           onChange={handleChange}
           required
         />
-        Aceito os{" "}
+        {t('createaccform.tc1')}{" "}
         <a
         href="https://www.fundacaogalp.com/Portals/1/Documentos/Politica_Privacidade_Fundacao_Galp.pdf"
         target="_blank"
@@ -171,7 +175,7 @@ export default function CreateAccountForm() {
           );
         }}
         >
-          Termos e Condições
+          {t('createaccform.tc2')}
         </a>
       </label>
 
@@ -179,7 +183,7 @@ export default function CreateAccountForm() {
       {successMessage && <p className="success">{successMessage}</p>}
 
       <button type="submit" className="action-button">
-        Começar
+        {t('createaccform.start')}
       </button>
 
       <style jsx>{`
