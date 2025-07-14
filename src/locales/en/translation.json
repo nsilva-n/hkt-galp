@@ -34,7 +34,8 @@
 	"solidarity1": "Solidarity",
 	"solidarity2": "Every move helps feed families who need our help",
 	"transp1": "Transparency",
-	"transp2": "Follow the campaign's progress and collective impact in real time"
+	"transp2": "Follow the campaign's progress and collective impact in real time",
+	"human": "Please verify that you are human:"
   },
   "auth": {
 	"login1": "Login",

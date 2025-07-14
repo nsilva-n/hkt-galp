@@ -34,7 +34,8 @@
     "solidarity1": "Solidaritāte",
     "solidarity2": "Katra kustība palīdz pabarot ģimenes, kam nepieciešama mūsu palīdzība",
     "transp1": "Caurspīdība",
-    "transp2": "Sekojiet kampaņas gaitai un kopējam ietekmei tiešraidē"
+    "transp2": "Sekojiet kampaņas gaitai un kopējam ietekmei tiešraidē",
+	"human": "Lūdzu, apstipriniet, ka esat cilvēks:"
   },
   "auth": {
     "login1": "Pieslēgties",

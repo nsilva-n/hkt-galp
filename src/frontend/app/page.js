@@ -197,7 +197,7 @@ export default function Home() {
                     <h2 className="text-lg font-semibold text-gray-700 mb-4">
                       {mounted && timeLeft ?
                         (timeLeft.status === 'before' ? "Data de início:" :
-                          timeLeft.status === 'running' ? t('time1') : t('hero.time2'))
+                          timeLeft.status === 'running' ? t('hero.time1') : t('hero.time2'))
                         : t('hero.time2')}
                     </h2>
 

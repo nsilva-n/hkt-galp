@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import Step5FinalPage from './submission/Step5FinalPage';
 import { useParticipation } from '../hooks/useParticipation'
+import { useTranslation } from "react-i18next";
+import '../../../i18n';
 
 import {
   ChevronLeft,
@@ -25,6 +27,7 @@ import './submission/submission-modal.css';
 
 const ActivitySubmissionFlow = ({ onClose }) => {
   const router = useRouter();
+  const { t } = useTranslation();
   const fileInputRefs = useRef({});
   const [currentStep, setCurrentStep] = useState(0);
   const [submissionType, setSubmissionType] = useState('');
@@ -58,12 +61,12 @@ const ActivitySubmissionFlow = ({ onClose }) => {
   }, [currentStep]);
 
   const activityTypes = [
-    { value: 'walk', label: 'Caminhada', icon: '🚶' },
-    { value: 'run', label: 'Corrida', icon: '🏃' },
-    { value: 'swim', label: 'Natação', icon: '🏊' },
-    { value: 'cycle', label: 'Ciclismo', icon: '🚴' },
-    { value: 'dance', label: 'Dança', icon: '💃' },
-    { value: 'others', label: 'Outros', icon: '🏋️' },
+    { value: 'walk', label: t('activity.walk'), icon: '🚶' },
+    { value: 'run', label: t('activity.run'), icon: '🏃' },
+    { value: 'swim', label: t('activity.swim'), icon: '🏊' },
+    { value: 'cycle', label: t('activity.cycle'), icon: '🚴' },
+    { value: 'dance', label: t('activity.dance'), icon: '💃' },
+    { value: 'others', label: t('activity.others'), icon: '🏋️' },
   ];
 
   const supportedApps = [
@@ -78,12 +81,12 @@ const ActivitySubmissionFlow = ({ onClose }) => {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Por favor, selecione apenas ficheiros de imagem.');
+      alert(t('submission.alert1'));
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('O ficheiro é muito grande. Por favor, selecione uma imagem até 5MB.');
+      alert(t('submission.alert2'));
       return;
     }
 
@@ -104,7 +107,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
         setSubmissionType('import');
         setCurrentStep(3);
       } catch (error) {
-        console.error('Erro ao buscar atividades do Strava:', error);
+        console.error(t('submission.alert3'), error);
       }
     };
 
@@ -142,18 +145,18 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
   const validateActivity = (activity) => {
     const errors = {};
-    if (!activity.type) errors.type = 'Por favor, selecione um tipo de atividade';
+    if (!activity.type) errors.type = t('submission.validate1');
     // Convert comma to dot for validation
     const distanceValue = activity.distance ? parseFloat(activity.distance.toString().replace(',', '.')) : 0;
-    if (!activity.distance || distanceValue <= 0) errors.distance = 'Por favor, introduza uma distância válida';
-    if (!uploadedImages[activity.id]) errors.image = 'Por favor, carregue uma imagem que comprove a quilometragem';
+    if (!activity.distance || distanceValue <= 0) errors.distance = t('submission.validate2');
+    if (!uploadedImages[activity.id]) errors.image = t('submission.validate3');
 
     // Date validation
     if (activity.isDateRange) {
       if (!activity.startDate || !activity.endDate) {
-        errors.date = 'Por favor, preencha as datas de início e fim';
+        errors.date = t('submission.validate4');
       } else if (new Date(activity.startDate) > new Date(activity.endDate)) {
-        errors.date = 'Data de início deve ser anterior à data de fim';
+        errors.date = t('submission.validate5');
       } else {
         // Check if dates are within campaign period
         if (CAMPAIGN_CONFIG.isBeforeStart(activity.startDate)) {
@@ -164,7 +167,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
       }
     } else {
       if (!activity.date) {
-        errors.date = 'Por favor, selecione uma data';
+        errors.date = t('submission.validate6');
       } else {
         // Check if date is within campaign period
         if (CAMPAIGN_CONFIG.isBeforeStart(activity.date)) {
@@ -411,7 +414,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
   const renderStep0 = () => (
     <div className="text-center space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-8">Como gostaria de adicionar as suas atividades?</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-8">{t('submission.stepzero1')}</h2>
 
       <div className="space-y-4">
         <Button
@@ -425,7 +428,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
           className="p-6"
         >
           <Import className="button__icon" />
-          <span>Importar de Aplicação</span>
+          <span>{t('submission.stepzero2')}</span>
         </Button>
 
         <Button
@@ -439,12 +442,12 @@ const ActivitySubmissionFlow = ({ onClose }) => {
           className="p-6"
         >
           <Edit className="button__icon" />
-          <span>Introduzir Manualmente</span>
+          <span>{t('submission.stepzero3')}</span>
         </Button>
       </div>
 
       <div className="mt-8 p-4 bg-gray-100 rounded-2xl">
-        <h3 className="font-semibold text-gray-700 mb-2">Aplicações Suportadas:</h3>
+        <h3 className="font-semibold text-gray-700 mb-2">{t('submission.stepzero4')}</h3>
         <div className="flex flex-wrap gap-2 justify-center">
           {supportedApps.map((app) => (
             <span
@@ -468,7 +471,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-800">
-            Adicionar Atividade {currentActivityIndex + 1} de {activities.length}
+            {t('submission.stepzero5')} {currentActivityIndex + 1} {t('submission.stepzero6')} {activities.length}
           </h2>
           {activities.length > 1 && (
             <Button
@@ -478,7 +481,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
               className="text-red-500 hover:text-red-700 border-red-500 hover:border-red-700"
             >
               <Minus className="button__icon" />
-              <span>Remover</span>
+              <span>{t('submission.stepzero7')}</span>
             </Button>
           )}
         </div>
@@ -486,7 +489,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
         <div className="border border-gray-300 rounded-2xl p-6 bg-white shadow-sm">
           {/* Activity Type */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de Atividade</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('submission.stepzero18')}</label>
             <div className="grid grid-cols-2 gap-2">
               {activityTypes.map((type) => (
                 <Button
@@ -522,7 +525,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
           {/* Distance */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Distância (km)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('submission.distance')}</label>
             <input
               type="text"
               value={activity.distance}
@@ -564,7 +567,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
               }}
               className={`w-full p-3 border rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.distance ? 'border-red-500 bg-red-50' : 'border-gray-300'
                 }`}
-              placeholder="Introduza a distância em km"
+              placeholder={t('submission.input')}
             />
             {errors.distance && (
               <p className="text-red-500 text-sm mt-1">{errors.distance}</p>
@@ -592,7 +595,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
           {/* Date */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Data</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('submission.date1')}</label>
             <div className="space-y-3">
               <div className="flex items-center space-x-4">
                 <label className="flex items-center space-x-2">
@@ -602,7 +605,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
                     onChange={() => updateActivity(activity.id, 'isDateRange', false)}
                     className="text-blue-500"
                   />
-                  <span>Data Única</span>
+                  <span>{t('submission.date2')}</span>
                 </label>
                 <label className="flex items-center space-x-2">
                   <input
@@ -611,7 +614,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
                     onChange={() => updateActivity(activity.id, 'isDateRange', true)}
                     className="text-blue-500"
                   />
-                  <span>Intervalo de Datas</span>
+                  <span>{t('submission.date3')}</span>
                 </label>
               </div>
 
@@ -626,7 +629,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
               ) : (
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">De</label>
+                    <label className="block text-xs text-gray-500 mb-1">{t('submission.from')}</label>
                     <input
                       type="date"
                       value={activity.startDate}
@@ -636,7 +639,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Até</label>
+                    <label className="block text-xs text-gray-500 mb-1">{t('submission.to')}</label>
                     <input
                       type="date"
                       value={activity.endDate}
@@ -655,7 +658,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
           {/* Image Upload Section */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Imagem da Atividade (distância)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('submission.ius1')}</label>
 
             {uploadedImages[activity.id] ? (
               <div className="space-y-3">
@@ -682,7 +685,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
                   className=""
                 >
                   <Upload className="button__icon" />
-                  <span>Alterar Imagem</span>
+                  <span>{t('submission.ius2')}</span>
                 </Button>
               </div>
             ) : (
@@ -697,8 +700,8 @@ const ActivitySubmissionFlow = ({ onClose }) => {
                   <Camera className="button__icon" />
                   <Upload className="button__icon" />
                 </div>
-                <span className="text-sm font-medium">Carregar Imagem</span>
-                <span className="text-xs text-gray-500">Clique para tirar foto ou selecionar ficheiro</span>
+                <span className="text-sm font-medium">{t('submission.ius3')}</span>
+                <span className="text-xs text-gray-500">{t('submission.ius4')}</span>
               </button>
             )}
             {errors.image && (
@@ -723,7 +726,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             variant="secondary"
           >
             <ChevronLeft className="button__icon" />
-            <span>Voltar</span>
+            <span>{t('submission.goback')}</span>
           </Button>
 
           <Button
@@ -731,7 +734,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             variant="primary"
             className=""
           >
-            <span>Próximo</span>
+            <span>{t('submission.next')}</span>
             <ChevronRight className="button__icon" />
           </Button>
         </div>
@@ -741,7 +744,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
   const renderStep2Import = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold text-gray-800 text-center">Escolha uma aplicação para importar</h2>
+      <h2 className="text-xl font-bold text-gray-800 text-center">{t('submission.import1')}</h2>
 
       <div className="grid grid-cols-2 gap-4">
         {supportedApps.map((app) => (
@@ -759,7 +762,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             <div className="font-semibold">
               {app.name}
               {!app.available && (
-                <div className="text-xs font-normal mt-1">(Em Breve)</div>
+                <div className="text-xs font-normal mt-1">{t('submission.soon')}</div>
               )}
             </div>
           </Button>
@@ -767,11 +770,11 @@ const ActivitySubmissionFlow = ({ onClose }) => {
       </div>
 
       <div className="bg-blue-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-blue-800 mb-2">Como funciona:</h3>
+        <h3 className="font-semibold text-blue-800 mb-2">{t('submission.import2')}</h3>
         <ul className="text-sm text-blue-700 space-y-1">
-          <li>• Clique na sua aplicação preferida</li>
-          <li>• Faça login com as suas credenciais</li>
-          <li>• Selecione as atividades que deseja importar</li>
+          <li>{t('submission.import3')}</li>
+          <li>{t('submission.import4')}</li>
+          <li>{t('submission.import5')}</li>
         </ul>
       </div>
 
@@ -805,7 +808,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
     return (
       <div className="space-y-6">
         <h2 className="text-xl font-bold text-gray-800 text-center">
-          Selecione a atividade do Strava:
+          {t('submission.import6')}
         </h2>
 
         {sortedActivities.length === 0 ? (
@@ -847,12 +850,12 @@ const ActivitySubmissionFlow = ({ onClose }) => {
                   </div>
                   {selectedActivity?.id === activity.id && (
                     <div className="text-red-500 font-semibold text-sm">
-                      Selecionada
+                      {t('submission.import7')}
                     </div>
                   )}
                   {activity.date === todayDate && (
                     <div className="text-xs text-yellow-700 bg-yellow-200 px-2 py-1 rounded ml-2">
-                      Hoje
+                      {t('submission.import8')}
                     </div>
                   )}
                 </div>
@@ -868,7 +871,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             className="space-x-2"
           >
             <ChevronLeft size={16} />
-            <span>Voltar</span>
+            <span>{t('submission.goback')}</span>
           </Button>
           <Button
             onClick={() => {
@@ -898,7 +901,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             variant="primary"
             className="space-x-2"
           >
-            <span>Continuar</span>
+            <span>{t('submission.next')}</span>
             <ChevronRight size={16} />
           </Button>
         </div>
@@ -908,7 +911,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
 
   const renderStep4Review = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold text-gray-800 text-center">Rever as Suas Atividades</h2>
+      <h2 className="text-xl font-bold text-gray-800 text-center">{t('submission.review1')}</h2>
 
       <div className="space-y-4">
         {activities.map((activity) => (
@@ -969,23 +972,23 @@ const ActivitySubmissionFlow = ({ onClose }) => {
           className="py-2 text-blue-600 hover:text-blue-800 border-blue-300 hover:bg-blue-50 flex items-center justify-center gap-2"
         >
           <Plus className="button__icon" />
-          <span className="text-base font-medium">Adicionar Mais Atividades</span>
+          <span className="text-base font-medium">{t('submission.review6')}</span>
         </Button>
       </div>
 
       {activities.length === 0 && (
         <div className="text-center py-8">
-          <p className="text-gray-500">Nenhuma atividade para rever.</p>
+          <p className="text-gray-500">{t('submission.review7')}</p>
         </div>
       )}
 
       <div className="bg-green-50 p-4 rounded-lg">
-        <h3 className="font-semibold text-green-800 mb-2">Pronto para Submeter!</h3>
+        <h3 className="font-semibold text-green-800 mb-2">{t('submission.review8')}</h3>
         <p className="text-sm text-green-700">
-          Por favor, reveja as suas atividades acima. Uma vez submetidas, estes dados serão adicionados ao seu perfil.
+          {t('submission.review9')}
           {activities.some(a => a.source) && (
             <span className="block mt-1">
-              Nota: Atividades duplicadas das importações foram automaticamente removidas.
+              {t('submission.review10')}
             </span>
           )}
         </p>
@@ -998,7 +1001,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
           className="space-x-2"
         >
           <ChevronLeft size={16} />
-          <span>Voltar</span>
+          <span>{t('submission.goback')}</span>
         </Button>
         <div className="flex space-x-3">
           <Button
@@ -1014,7 +1017,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             className=""
           >
             <X className="button__icon" />
-            <span>Cancelar</span>
+            <span>{t('submission.cancel')}</span>
           </Button>
           <Button
             onClick={handleSubmit}
@@ -1023,7 +1026,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
             className=""
           >
             <Check className="button__icon" />
-            <span>Submeter</span>
+            <span>{t('submission.submit')}</span>
           </Button>
         </div>
       </div>
@@ -1084,7 +1087,7 @@ const ActivitySubmissionFlow = ({ onClose }) => {
               </button>
             )}
             <p className="text-center text-gray-600">
-              Registe os quilômetros percorridos para cada atividade
+              {t('submission.submit2')}
             </p>
           </div>
 

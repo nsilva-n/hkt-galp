@@ -1,7 +1,7 @@
 {
   "campaignname": "Cada paso cuenta",
   "hero": {
-    "brand": "Fundación Galp",
+    "brand": "Fundação Galp",
     "line1": "Cada",
     "line2": "paso",
     "line3": "cuenta",
@@ -34,7 +34,8 @@
     "solidarity1": "Solidaridad",
     "solidarity2": "Cada movimiento ayuda a alimentar familias que necesitan nuestra ayuda",
     "transp1": "Transparencia",
-    "transp2": "Sigue el progreso de la campaña y el impacto colectivo en tiempo real"
+    "transp2": "Sigue el progreso de la campaña y el impacto colectivo en tiempo real",
+	"human": "Por favor, verifique que es humano:"
   },
   "auth": {
     "login1": "Iniciar sesión",
