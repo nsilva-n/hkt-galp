@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,9 +10,12 @@ import SubmissionModal from "./components/submission/SubmissionModal";
 import "./homepage.css"
 import ReCAPTCHA from "react-google-recaptcha";
 import { CAMPAIGN_CONFIG } from "./config/campaign";
-
+import i18n from '../../i18n';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [totalMeals, setTotalMeals] = useState(12345);
   const [showCaptcha, setShowCaptcha] = useState(false);
@@ -96,7 +99,13 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 min-h-screen flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+			<div className="absolute top-0 right-0 flex gap-2 m-4">
+				{/* Implementado para suportar várias linguagens, apenas descomentar e repetir o padrão (ATENÇÃO ao mr-2 comentado) */}
+				<button onClick={() => i18n.changeLanguage('en')} className="bg-white text-black px-3 py-1 rounded mr-2">EN</button>
+				<button onClick={() => i18n.changeLanguage('pt')} className="bg-white text-black px-3 py-1 rounded mr-2">PT</button>
+				<button onClick={() => i18n.changeLanguage('es')} className="bg-white text-black px-3 py-1 rounded mr-2">ES</button>
+				<button onClick={() => i18n.changeLanguage('lv')} className="bg-white text-black px-3 py-1 rounded">LV</button></div>
+            	<div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Hero Content */}
               <div className="text-white space-y-8">
                 <div className="flex items-center mb-6">
@@ -107,22 +116,21 @@ export default function Home() {
                       className="h-10 w-10"
                     />
                   </div>
-                  <span className="text-xl font-semibold text-white drop-shadow-lg">Fundação Galp</span>
+                  <span className="text-xl font-semibold text-white drop-shadow-lg">{t('hero.brand')}</span>
                 </div>
                 <div className="space-y-4">
                   <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                    Todos os<br />
-                    <span className="text-orange-200">passos</span><br />
-                    contam
+                    {t('hero.line1')}<br />
+                    <span className="text-orange-200">{t('hero.line2')}</span><br />
+                    {t('hero.line3')}
                   </h1>
                   <p className="text-xl sm:text-2xl text-orange-100 font-medium">
-                    1 km = 1 refeição doada
+                    {t('hero.subtitle1')}
                   </p>
                 </div>
 
                 <p className="text-lg text-orange-50 leading-relaxed max-w-lg">
-                  Cada quilómetro que percorrer transforma-se
-                  numa refeição doada para quem mais precisa.
+                  {t('hero.subtitle2')}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -131,10 +139,10 @@ export default function Home() {
                     className="hero-button"
                     onClick={handleParticipateClick}
                   >
-                    Participe já!
+                    {t('hero.button1')}
                   </Button>
                   <div className="flex items-center gap-2 text-orange-100 hero-meta">
-                    <span className="text-sm">Meta: 1 milhão de refeições</span>
+                    <span className="text-sm">{t('hero.target')}</span>
                   </div>
                 </div>
               </div>
@@ -150,7 +158,7 @@ export default function Home() {
                       arrow="right"
                       className="absolute -top-8 -right-12 text-xs font-normal scale-75 [&>svg]:w-5 [&>svg]:h-5"
                     >
-                      Ver estatísticas
+                      {t('hero.stats')}
                     </Button>
                   </div>
                   <div className="text-center">
@@ -158,7 +166,7 @@ export default function Home() {
                       <CookingPot className="w-16 h-16 mx-auto text-orange-600" />
                     </div>
                     <h2 className="text-lg font-semibold text-gray-700 mb-2">
-                      Refeições doadas
+                      {t('hero.donmeals')}
                     </h2>
                     <div className="text-5xl font-bold text-orange-600 mb-4">
                       {totalMeals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
@@ -173,7 +181,7 @@ export default function Home() {
                     </div>
 
                     <p className="text-sm text-gray-600">
-                      {progress.toFixed(1)}% da meta alcançada
+                      {progress.toFixed(1)}{t('hero.donmeals2')}
                     </p>
                   </div>
                 </div>
@@ -189,8 +197,8 @@ export default function Home() {
                     <h2 className="text-lg font-semibold text-gray-700 mb-4">
                       {mounted && timeLeft ?
                         (timeLeft.status === 'before' ? "Data de início:" :
-                          timeLeft.status === 'running' ? "Tempo Restante" : "Status do evento")
-                        : "Status do evento"}
+                          timeLeft.status === 'running' ? t('time1') : t('hero.time2'))
+                        : t('hero.time2')}
                     </h2>
 
                     {mounted ? (
@@ -200,7 +208,7 @@ export default function Home() {
                             <div className="text-3xl font-bold text-orange-600">
                               {timeLeft.days.toString().padStart(2, "0")}
                             </div>
-                            <div className="text-sm text-gray-600 uppercase tracking-wide">dias</div>
+                            <div className="text-sm text-gray-600 uppercase tracking-wide">{t('hero.days')}</div>
                           </div>
                           <div className="bg-orange-50 rounded-xl p-3">
                             <div className="text-3xl font-bold text-orange-600">
@@ -223,11 +231,11 @@ export default function Home() {
                         </div>
                       ) : (
                         <div className="text-2xl font-bold text-red-600">
-                          {timeLeft?.status === 'ended' ? 'A campanha terminou!' : 'Carregando...'}
+                          {timeLeft?.status === 'ended' ? t('hero.over') : t('hero.loading')}
                         </div>
                       )
                     ) : (
-                      <div className="text-gray-500">Carregando...</div>
+                      <div className="text-gray-500">{t('hero.loading')}</div>
                     )}
                   </div>
                 </div>
@@ -242,10 +250,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              O seu impacto
+              {t('impact.title')}
             </h3>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cuide da sua saúde e distribua esperança.
+              {t('impact.subtitle')}
             </p>
           </div>
 
@@ -256,9 +264,9 @@ export default function Home() {
                   <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.46,13.97L5.82,21L12,17.27Z" />
                 </svg>
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-3">Simplicidade</h4>
+              <h4 className="text-xl font-bold text-gray-800 mb-3">{t('impact.simple1')}</h4>
               <p className="text-gray-600 leading-relaxed">
-                Registe os seus quilómetros facilmente através da nossa plataforma intuitiva
+                {t('impact.simple2')}
               </p>
             </div>
 
@@ -268,9 +276,9 @@ export default function Home() {
                   <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
                 </svg>
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-3">Solidariedade</h4>
+              <h4 className="text-xl font-bold text-gray-800 mb-3">{t('impact.solidarity1')}</h4>
               <p className="text-gray-600 leading-relaxed">
-                Cada movimento contribui para alimentar famílias que precisam da nossa ajuda
+                {t('impact.solidarity2')}
               </p>
             </div>
 
@@ -280,9 +288,9 @@ export default function Home() {
                   <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z" />
                 </svg>
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-3">Transparência</h4>
+              <h4 className="text-xl font-bold text-gray-800 mb-3">{t('impact.transp1')}</h4>
               <p className="text-gray-600 leading-relaxed">
-                Acompanhe em tempo real o progresso da campanha e o impacto colectivo
+                {t('impact.transp2')}
               </p>
             </div>
           </div>
@@ -301,7 +309,7 @@ export default function Home() {
       {showCaptcha && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center">
-            <p className="mb-4 text-lg font-semibold text-gray-700">Por favor, verifique que é humano:</p>
+            <p className="mb-4 text-lg font-semibold text-gray-700">{t('impact.human')}</p>
             <ReCAPTCHA
               sitekey="6LeS7HkrAAAAAMxzyanGEaMPKhPqgUzx2VuRhBPG"
               onChange={handleCaptchaChange}
@@ -310,7 +318,7 @@ export default function Home() {
               className="mt-4 text-sm text-gray-500 underline"
               onClick={() => setShowCaptcha(false)}
             >
-              Cancelar
+              {t('submission.cancel')}
             </button>
           </div>
         </div>
