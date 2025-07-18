@@ -23,9 +23,8 @@ services:
       - ./backend:/app
     ports:
       - "5000:5000"
-    env_file:
-      - path: .env
-        required: true
+    env_file: 
+      - .env
 
     depends_on:
       db:

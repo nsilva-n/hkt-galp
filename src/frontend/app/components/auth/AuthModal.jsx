@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
@@ -8,9 +8,8 @@ import Button from "../ui/Button";
 import "../ui/styles/Button.css";
 import "./auth-modal.css";
 import design from "../../config/design";
-import React from 'react';
 import { useTranslation } from "react-i18next";
-import '../../../../i18n';
+import '../../i18n';
 
 const lusophoneCountries = [
 	{ name: "Portugal", flag: "🇵🇹" },
@@ -23,8 +22,8 @@ const lusophoneCountries = [
 ];
 
 export default function AuthModal({ isOpen, onClose, onOpenSubmission }) {
+	const { t } = useTranslation();
 	const [view, setView] = useState("choice"); // 'choice' | 'login' | 'signup' | 'guest-profile'
-  	const { t } = useTranslation();
 
 	// Guest profile state
 	const [guestStep, setGuestStep] = useState(1);

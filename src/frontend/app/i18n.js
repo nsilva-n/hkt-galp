@@ -1,7 +1,7 @@
 // src/i18n.js
-import i18n from './frontend/node_modules/i18next';
-import { initReactI18next } from './frontend/node_modules/react-i18next';
-import LanguageDetector from './frontend/node_modules/i18next-browser-languagedetector';
+import i18n from './../node_modules/i18next';
+import { initReactI18next } from './../node_modules/react-i18next';
+import LanguageDetector from './../node_modules/i18next-browser-languagedetector';
 
 // Para adicionar mais idiomas, fazer import e acrescentar no resources
 // Adicionar também const t no início de cada função que envolve tradução

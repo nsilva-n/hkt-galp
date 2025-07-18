@@ -6,9 +6,11 @@ import Button from "../ui/Button";
 import "./login-form.css";
 import Image from "next/image";
 import { useLogin } from "../../hooks/useLogin";
+import { useTranslation } from "react-i18next";
 
 
 export default function LoginForm({ onClose }) {
+	const { t } = useTranslation();
 	const { login, loading, error } = useLogin();
 	const router = useRouter();
 	const [mounted, setMounted] = useState(false);

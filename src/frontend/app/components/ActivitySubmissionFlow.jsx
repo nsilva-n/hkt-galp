@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Step5FinalPage from './submission/Step5FinalPage';
 import { useParticipation } from '../hooks/useParticipation'
 import { useTranslation } from "react-i18next";
-import '../../../i18n';
+import '../i18n';
 
 import {
   ChevronLeft,

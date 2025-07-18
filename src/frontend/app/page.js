@@ -10,7 +10,7 @@ import SubmissionModal from "./components/submission/SubmissionModal";
 import "./homepage.css"
 import ReCAPTCHA from "react-google-recaptcha";
 import { CAMPAIGN_CONFIG } from "./config/campaign";
-import i18n from '../../i18n';
+import i18n from './i18n';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
